@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Kalyana Mantapa | Booking</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(135deg, #fffaf0, #fff5e6);
+      scroll-behavior: smooth;
+    }
+
+    /* ============ NAVBAR ============ */
+    .navbar {
+      background: white;
+      animation: slideDown 0.6s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    .navbar-logo {
+      height: 42px;
+      border-radius: 6px;
+      transition: transform 0.3s;
+    }
+    .navbar-logo:hover { transform: scale(1.1); }
+    .navbar-brand span { font-weight: 600; font-size: 1.2rem; font-family: 'Playfair Display', serif; }
+
+    @keyframes slideDown {
+      from { transform: translateY(-100%); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    /* ============ BOOKING FORM ============ */
+    .booking-card {
+      animation: fadeUp 0.8s ease;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Full Day / Hourly buttons */
+    .time-btns .btn {
+      border-radius: 50px;
+      padding: 8px 20px;
+      transition: all 0.3s ease;
+      margin-right: 10px;
+    }
+    .time-btns .btn:hover {
+      transform: scale(1.05);
+    }
+    .time-btns .btn.active {
+      background-color: #f4d06f;
+      color: #212529;
+      border-color: #f4d06f;
+    }
+
+    /* Form inputs */
+    .form-control {
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+    .form-control:focus {
+      border-color: #f4d06f;
+      box-shadow: 0 0 10px rgba(244,208,111,0.4);
+    }
+
+    /* Buttons */
+    .btn {
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
+
+    /* Right summary box */
+    .summary-box {
+      background: linear-gradient(145deg, #fffaf0, #fff1d6);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+      border-radius: 15px;
+      padding: 2rem;
+      transition: transform 0.3s, box-shadow 0.3s;
+      animation: fadeUp 1s ease;
+    }
+    .summary-box:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+    }
+
+    /* Estimated price highlight */
+    #estimatedPrice {
+      color: #f4d06f;
+      font-weight: 700;
+      transition: transform 0.3s, color 0.3s;
+    }
+    #estimatedPrice:hover {
+      transform: scale(1.2);
+      color: #e5b700;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .booking-card { flex-direction: column; }
+      .summary-box { margin-top: 2rem; }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+<nav class="navbar navbar-expand-lg border-bottom">
+  <div class="container">
+    <div class="navbar-brand d-flex align-items-center">
+      <img src="../assets/images/siddaroodaswamy.png" class="navbar-logo me-2" alt="Logo">
+      <span>Siddharooda Kalyana Mantapa</span>
+    </div>
+
+    <ul class="navbar-nav ms-auto">
+      <li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
+      <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+      <li class="nav-item"><a class="nav-link" href="halls.html">Halls</a></li>
+      <li class="nav-item"><a class="nav-link active fw-bold" href="booking.html">Booking</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ================= BOOKING SECTION ================= -->
+<div class="container my-5">
+  <div class="row g-4 booking-card">
+
+    <!-- ===== LEFT FORM ===== -->
+    <div class="col-lg-8">
+      <h4 class="mb-3">Reserve the Hall</h4>
+
+      <div class="mb-4 time-btns">
+        <button type="button" class="btn btn-dark active" id="fullDayBtn">Full Day</button>
+        <button type="button" class="btn btn-outline-dark" id="hourlyBtn">Hourly</button>
+      </div>
+
+      <form>
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label class="form-label">Full Name</label>
+            <input type="text" class="form-control" id="fullName">
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Phone No</label>
+            <input type="text" class="form-control" id="phone">
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label class="form-label">Guests</label>
+            <input type="number" class="form-control" id="guests">
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Date</label>
+            <input type="date" class="form-control" id="date">
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Notes (optional)</label>
+          <textarea class="form-control" rows="4" id="notes"></textarea>
+        </div>
+
+        <p class="fw-bold mb-1">Estimated price</p>
+        <h5>₹ <span id="estimatedPrice">0</span></h5>
+      </form>
+    </div>
+
+    <!-- ===== RIGHT SUMMARY ===== -->
+    <div class="col-lg-4">
+      <div class="summary-box border p-4 rounded">
+        <h5 class="fw-bold" id="hallName">Hall Name</h5>
+        <p class="text-muted mb-1">Kalburgi, India</p>
+        <span class="badge rounded-pill text-bg-light border mb-3">Premium</span>
+
+        <hr>
+
+        <p><strong>Capacity</strong><br>
+          <span id="hallCapacity">0</span> Guests
+        </p>
+
+        <p><strong>Price (Full Day)</strong><br>
+          ₹ <span id="hallPrice">0</span>
+        </p>
+
+        <p><strong>Price (Per Hour)</strong><br>₹ 4,000</p>
+
+        <button class="btn btn-dark w-100 mt-3" onclick="submitBooking()">Book Now</button>
+
+        <p class="small text-muted mt-3">
+          Note: This demo stores bookings locally in your browser.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- ================= DYNAMIC DATA & INTERACTIONS ================= -->
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const hall = params.get("hall");
+  const price = params.get("price");
+  const capacity = params.get("capacity");
+
+  if (hall) document.getElementById("hallName").innerText = hall;
+  if (price) {
+    document.getElementById("hallPrice").innerText = price;
+    document.getElementById("estimatedPrice").innerText = price;
+  }
+  if (capacity) document.getElementById("hallCapacity").innerText = capacity;
+
+  // Full Day / Hourly toggle
+  const fullDayBtn = document.getElementById("fullDayBtn");
+  const hourlyBtn = document.getElementById("hourlyBtn");
+  fullDayBtn.addEventListener("click", () => {
+    fullDayBtn.classList.add("active");
+    hourlyBtn.classList.remove("active");
+    document.getElementById("estimatedPrice").innerText = document.getElementById("hallPrice").innerText;
+  });
+  hourlyBtn.addEventListener("click", () => {
+    hourlyBtn.classList.add("active");
+    fullDayBtn.classList.remove("active");
+    document.getElementById("estimatedPrice").innerText = "4000";
+  });
+
+  async function submitBooking() {
+    const bookingData = {
+      user_id: 1,
+      fullName: document.getElementById("fullName").value,
+      phone: document.getElementById("phone").value,
+      guests: document.getElementById("guests").value,
+      date: document.getElementById("date").value,
+      notes: document.getElementById("notes").value,
+      hallName: document.getElementById("hallName").innerText,
+      price: document.getElementById("estimatedPrice").innerText
+    };
+
+    try {
+      const response = await fetch("http://localhost:5000/booking", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(bookingData)
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        alert("✅ Booking successful!");
+      } else {
+        alert("❌ Booking failed: " + result.msg);
+      }
+    } catch (error) {
+      alert("❌ Server error. Backend not running.");
+      console.error(error);
+    }
+  }
+</script>
+</body>
+</html>
